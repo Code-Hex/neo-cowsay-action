@@ -15,11 +15,12 @@ jobs:
         message: >
           This is cowsay
           Hello, World!!
-    - name: Test with another cow
+    - name: Test cowsay on the comment
       uses: Code-Hex/cowsay-action@test
       with:
         message: 'Hello, World with docker'
         cow: 'docker'
+        cowsay_on_comment: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Test set output pipeline
