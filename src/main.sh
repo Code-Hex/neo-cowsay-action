@@ -11,6 +11,11 @@ function parseInputs {
 
   # Optional inputs
   cow=${INPUT_COW}
+  onComment=0
+  if [ "${INPUT_COWSAY_ON_COMMENT}" == "1" ] || [ "${INPUT_COWSAY_ON_COMMENT}" == "true" ]; then
+    onComment=1
+  fi
+  outputName=${INPUT_COWSAY_TO_OUTPUT}
 }
 
 function installNeoCowsay {
@@ -34,10 +39,35 @@ function installNeoCowsay {
 }
 
 function main {
-
   parseInputs
   installNeoCowsay
-  cowsay -f $cow $message
+
+  result=$(cowsay -f $cow $message)
+
+  # Set cowsay to output
+  if [ "${outputName}" != "" ]; then
+    # https://github.community/t5/GitHub-Actions/set-output-Truncates-Multiline-Strings/m-p/38372/highlight/true#M3322
+    fmtResult="${result//'%'/'%25'}"
+    fmtResult="${fmtResult//$'\n'/'%0A'}"
+    echo "##[set-output name=${outputName};]${fmtResult}"
+  fi
+
+  # Comment on the pull request if necessary.
+  if [ "$GITHUB_EVENT_NAME" == "pull_request" ] && [ "${onComment}" == "1" ]; then    
+    commentsURL=$(cat ${GITHUB_EVENT_PATH} | jq -r .pull_request.comments_url)
+    commentFromCowsay="### Message from cowsay
+\`\`\`
+${result}
+\`\`\`
+"
+    payload=$(echo "${commentFromCowsay}" | jq -R --slurp '{body: .}')
+    echo "${payload}" | curl -s -S -H "Authorization: token ${GITHUB_TOKEN}" --header "Content-Type: application/json" --data @- "${commentsURL}" > /dev/null
+  fi
+
+  # If Didn't set optional values
+  if [ "${outputName}" == "" ] && [ "${onComment}" == "0" ]; then
+    echo "${result}"
+  fi
 }
 
 main "${*}"

@@ -7,6 +7,10 @@ inputs:
   cow:
     description: 'Choose the cow you want to say'
     default: 'default'
+  cowsay_on_comment:
+    description: 'Whether or not to comment on pull requests'
+  cowsay_to_output:
+    description: 'Set cowsay to you specified output'
 runs:
   using: 'docker'
   image: 'Dockerfile'

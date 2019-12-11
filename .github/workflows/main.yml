@@ -1,16 +1,36 @@
-on: [push]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A test job to cowsay
     steps:
     - name: Test just output the message
-      uses: Code-Hex/cowsay-action@master
+      uses: Code-Hex/cowsay-action@test
       with:
-        message: 'Hello, World'
-    - name: Test with another cow
-      uses: Code-Hex/cowsay-action@master
+        message: >
+          This is cowsay
+          Hello, World!!
+    - name: Test cowsay on the comment
+      uses: Code-Hex/cowsay-action@test
       with:
         message: 'Hello, World with docker'
         cow: 'docker'
+        cowsay_on_comment: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Test set output pipeline
+      id: cowsay_output_id
+      uses: Code-Hex/cowsay-action@test
+      with:
+        message: 'Hello, World'
+        cow: 'gopher'
+        cowsay_to_output: 'cowsay'
+    - name: Print output
+      run: |
+        echo "${{ steps.cowsay_output_id.outputs.cowsay }}"
+    
