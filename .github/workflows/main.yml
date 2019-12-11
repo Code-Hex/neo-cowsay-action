@@ -15,8 +15,6 @@ jobs:
         message: >
           This is cowsay
           Hello, World!!
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Test with another cow
       uses: Code-Hex/cowsay-action@test
       with:
@@ -24,3 +22,14 @@ jobs:
         cow: 'docker'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Test set output pipeline
+      id: cowsay_output_id
+      uses: Code-Hex/cowsay-action@test
+      with:
+        message: 'Hello, World'
+        cow: 'gopher'
+        cowsay_to_output: 'cowsay'
+    - name: Print output
+      run: |
+        echo "${{ steps.cowsay_output_id.outputs.cowsay }}"
+    

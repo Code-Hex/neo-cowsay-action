@@ -15,6 +15,7 @@ function parseInputs {
   if [ "${INPUT_COWSAY_ON_COMMENT}" == "1" ] || [ "${INPUT_COWSAY_ON_COMMENT}" == "true" ]; then
     onComment=1
   fi
+  outputName=${INPUT_COWSAY_TO_OUTPUT}
 }
 
 function installNeoCowsay {
@@ -40,10 +41,16 @@ function installNeoCowsay {
 function main {
   parseInputs
   installNeoCowsay
+
+  result=$(cowsay -f $cow $message)
+
+  # Set cowsay to output
+  if [ "${outputName}" != "" ]; then
+    echo "::set-output name=${outputName}::${result}"
+  fi
+
   # Comment on the pull request if necessary.
-  if [ "$GITHUB_EVENT_NAME" == "pull_request" ] && [ "${onComment}" == "1" ]; then
-    echo $message
-    result=$(cowsay -f $cow $message)
+  if [ "$GITHUB_EVENT_NAME" == "pull_request" ] && [ "${onComment}" == "1" ]; then    
     commentsURL=$(cat ${GITHUB_EVENT_PATH} | jq -r .pull_request.comments_url)
     commentFromCowsay="### Message from cowsay
 \`\`\`
@@ -53,7 +60,7 @@ ${result}
     payload=$(echo "${commentFromCowsay}" | jq -R --slurp '{body: .}')
     echo "${payload}" | curl -s -S -H "Authorization: token ${GITHUB_TOKEN}" --header "Content-Type: application/json" --data @- "${commentsURL}" > /dev/null
   else
-    cowsay -f $cow $message
+    echo "${result}"
   fi
 }
 
