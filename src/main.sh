@@ -46,6 +46,7 @@ function main {
 
   # Set cowsay to output
   if [ "${outputName}" != "" ]; then
+    # https://github.community/t5/GitHub-Actions/set-output-Truncates-Multiline-Strings/m-p/38372/highlight/true#M3322
     fmtResult="${result//'%'/'%25'}"
     fmtResult="${fmtResult//$'\n'/'%0A'}"
     echo "##[set-output name=${outputName};]${fmtResult}"
