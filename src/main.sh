@@ -11,6 +11,7 @@ function parseInputs {
 
   # Optional inputs
   cow=${INPUT_COW}
+  onComment=${INPUT_COWSAY_ON_COMMENT}
 }
 
 function installNeoCowsay {
