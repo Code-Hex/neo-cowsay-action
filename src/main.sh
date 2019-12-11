@@ -42,6 +42,7 @@ function main {
   installNeoCowsay
   # Comment on the pull request if necessary.
   if [ "$GITHUB_EVENT_NAME" == "pull_request" ] && [ "${onComment}" == "1" ]; then
+    echo $message
     result=$(cowsay -f $cow $message)
     commentsURL=$(cat ${GITHUB_EVENT_PATH} | jq -r .pull_request.comments_url)
     commentFromCowsay="### Message from cowsay
