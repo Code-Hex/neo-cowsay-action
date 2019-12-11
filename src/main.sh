@@ -45,12 +45,12 @@ function main {
     result=$(cowsay -f $cow $message)
     commentsURL=$(cat ${GITHUB_EVENT_PATH} | jq -r .pull_request.comments_url)
     echo "${commentsURL}"
-    echo cat <<"EOS"
+    cat <<"EOS"
 \`\`\`
 ${result}
 \`\`\`
 EOS
-    echo cat <<"EOS" | curl -s -S -H "Authorization: token ${GITHUB_TOKEN}" --header "Content-Type: application/json" --data @- "${commentsURL}" > /dev/null
+    cat <<"EOS" | curl -s -S -H "Authorization: token ${GITHUB_TOKEN}" --header "Content-Type: application/json" --data @- "${commentsURL}" > /dev/null
 \`\`\`
 ${result}
 \`\`\`
