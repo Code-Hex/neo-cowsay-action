@@ -9,7 +9,6 @@ inputs:
     default: 'default'
   cowsay_on_comment:
     description: 'Whether or not to comment on pull requests'
-    default: true
   cowsay_to_output:
     description: 'Set cowsay to you specified output'
 runs:

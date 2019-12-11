@@ -65,8 +65,6 @@ ${result}
   fi
 
   # If Didn't set optional values
-  echo "${outputName}"
-  echo "${onComment}"
   if [ "${outputName}" == "" ] && [ "${onComment}" == "0" ]; then
     echo "${result}"
   fi
