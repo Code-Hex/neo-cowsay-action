@@ -12,7 +12,7 @@ jobs:
     - name: Test just output the message
       uses: Code-Hex/cowsay-action@test
       with:
-        message: >-
+        message: >
           This is cowsay
           Hello, World!!
       env:
