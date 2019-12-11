@@ -34,10 +34,21 @@ function installNeoCowsay {
 }
 
 function main {
-
   parseInputs
   installNeoCowsay
-  cowsay -f $cow $message
+  # Comment on the pull request if necessary.
+  if [ "$GITHUB_EVENT_NAME" == "pull_request" ] && [ "${tfComment}" == "1" ]; then
+    result=$(cowsay -f $cow $message)
+    comment=<<"EOS"
+\`\`\`
+${result}
+\`\`\`
+EOS
+    commentsURL=$(cat ${GITHUB_EVENT_PATH} | jq -r .pull_request.comments_url)
+    echo "${comment}" | curl -s -S -H "Authorization: token ${GITHUB_TOKEN}" --header "Content-Type: application/json" --data @- "${commentsURL}" > /dev/null
+  else
+    cowsay -f $cow $message
+  fi
 }
 
 main "${*}"
