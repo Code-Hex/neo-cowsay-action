@@ -46,7 +46,7 @@ function main {
 
   # Set cowsay to output
   if [ "${outputName}" != "" ]; then
-    echo "::set-output name=${outputName}::${result}"
+    echo "##[set-output name=${outputName};]${result}"
   fi
 
   # Comment on the pull request if necessary.
