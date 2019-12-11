@@ -62,7 +62,10 @@ ${result}
 "
     payload=$(echo "${commentFromCowsay}" | jq -R --slurp '{body: .}')
     echo "${payload}" | curl -s -S -H "Authorization: token ${GITHUB_TOKEN}" --header "Content-Type: application/json" --data @- "${commentsURL}" > /dev/null
-  else
+  fi
+
+  # Does not set optional values
+  if [ "${outputName}" == "" ] && [ "${onComment}" == "0" ]; then
     echo "${result}"
   fi
 }
