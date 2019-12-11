@@ -43,11 +43,11 @@ function main {
   # Comment on the pull request if necessary.
   if [ "$GITHUB_EVENT_NAME" == "pull_request" ] && [ "${onComment}" == "1" ]; then
     result=$(cowsay -f $cow $message)
-    comment=<<EOS
+    comment=`cat <<EOS
 \`\`\`
 ${result}
 \`\`\`
-EOS
+EOS`
     commentsURL=$(cat ${GITHUB_EVENT_PATH} | jq -r .pull_request.comments_url)
     echo "${comment}"
     echo "${commentsURL}"
