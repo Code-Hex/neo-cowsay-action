@@ -44,10 +44,13 @@ function main {
   if [ "$GITHUB_EVENT_NAME" == "pull_request" ] && [ "${onComment}" == "1" ]; then
     result=$(cowsay -f $cow $message)
     commentsURL=$(cat ${GITHUB_EVENT_PATH} | jq -r .pull_request.comments_url)
-    echo "${commentsURL}"
-    cat <<"EOS" | curl -s -S -H "Authorization: token ${GITHUB_TOKEN}" --header "Content-Type: application/json" --data @- "${commentsURL}" > /dev/null
-hello, world
-EOS
+    commentFromCowsay="### Message from cowsay
+\`\`\`
+${result}
+\`\`\`
+"
+    payload=$(echo "${commentFromCowsay}" | jq -R --slurp '{body: .}')
+    echo "${payload}" | curl -s -S -H "Authorization: token ${GITHUB_TOKEN}" --header "Content-Type: application/json" --data @- "${commentsURL}" > /dev/null
   else
     cowsay -f $cow $message
   fi
