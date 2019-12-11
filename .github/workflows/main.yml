@@ -10,11 +10,11 @@ jobs:
     name: A test job to cowsay
     steps:
     - name: Test just output the message
-      uses: Code-Hex/cowsay-action@master
+      uses: Code-Hex/cowsay-action@test
       with:
         message: 'Hello, World'
     - name: Test with another cow
-      uses: Code-Hex/cowsay-action@master
+      uses: Code-Hex/cowsay-action@test
       with:
         message: 'Hello, World with docker'
         cow: 'docker'
