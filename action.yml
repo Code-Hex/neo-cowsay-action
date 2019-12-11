@@ -1,0 +1,12 @@
+name: 'cowsay'
+description: 'Wraps some messages by cowsay'
+inputs:
+  message:
+    description: 'What you want to say'
+    required: true
+  cow:
+    description: 'Choose the cow you want to say'
+    default: 'default'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

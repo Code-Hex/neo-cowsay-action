@@ -1,0 +1,16 @@
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+    - name: Test just output the message
+      uses: Code-Hex/cowsay-action@master
+      with:
+        message: 'Hello, World'
+    - name: Test with another cow
+      uses: Code-Hex/cowsay-action@master
+      with:
+        message: 'Hello, World with docker'
+        cow: 'docker'
