@@ -47,12 +47,12 @@ function main {
     echo "${commentsURL}"
     cat <<"EOS"
 \`\`\`
-${result}
+$result
 \`\`\`
 EOS
     cat <<"EOS" | curl -s -S -H "Authorization: token ${GITHUB_TOKEN}" --header "Content-Type: application/json" --data @- "${commentsURL}" > /dev/null
 \`\`\`
-${result}
+$result
 \`\`\`
 EOS
   else
