@@ -43,7 +43,7 @@ function main {
   # Comment on the pull request if necessary.
   if [ "$GITHUB_EVENT_NAME" == "pull_request" ] && [ "${onComment}" == "1" ]; then
     result=$(cowsay -f $cow $message)
-    comment=<<"EOS"
+    comment=<<EOS
 \`\`\`
 ${result}
 \`\`\`
