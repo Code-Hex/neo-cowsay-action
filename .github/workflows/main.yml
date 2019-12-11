@@ -13,8 +13,12 @@ jobs:
       uses: Code-Hex/cowsay-action@test
       with:
         message: 'Hello, World'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Test with another cow
       uses: Code-Hex/cowsay-action@test
       with:
         message: 'Hello, World with docker'
         cow: 'docker'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
