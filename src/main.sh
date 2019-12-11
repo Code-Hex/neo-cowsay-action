@@ -46,7 +46,9 @@ function main {
 
   # Set cowsay to output
   if [ "${outputName}" != "" ]; then
-    echo "##[set-output name=${outputName};]${result}"
+    fmtResult="${result//'%'/'%25'}"
+    fmtResult="${fmtResult//$'\n'/'%0A'}"
+    echo "##[set-output name=${outputName};]${fmtResult}"
   fi
 
   # Comment on the pull request if necessary.
