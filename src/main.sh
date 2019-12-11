@@ -37,10 +37,7 @@ function main {
 
   parseInputs
   installNeoCowsay
-  ls /usr/local/bin
-  ls /tmp
-  echo $message
-  echo $cow
+  cowsay -f $cow $message
 }
 
 main "${*}"
