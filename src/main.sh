@@ -43,15 +43,13 @@ function main {
   # Comment on the pull request if necessary.
   if [ "$GITHUB_EVENT_NAME" == "pull_request" ] && [ "${onComment}" == "1" ]; then
     result=$(cowsay -f $cow $message)
-    comment=`cat <<'EOS'
+    commentsURL=$(cat ${GITHUB_EVENT_PATH} | jq -r .pull_request.comments_url)
+    echo "${commentsURL}"
+    echo cat <<"EOS" | curl -s -S -H "Authorization: token ${GITHUB_TOKEN}" --header "Content-Type: application/json" --data @- "${commentsURL}" > /dev/null
 \`\`\`
 ${result}
 \`\`\`
-EOS`
-    commentsURL=$(cat ${GITHUB_EVENT_PATH} | jq -r .pull_request.comments_url)
-    echo "${comment}"
-    echo "${commentsURL}"
-    echo "${comment}" | curl -s -S -H "Authorization: token ${GITHUB_TOKEN}" --header "Content-Type: application/json" --data @- "${commentsURL}" > /dev/null
+EOS
   else
     cowsay -f $cow $message
   fi
