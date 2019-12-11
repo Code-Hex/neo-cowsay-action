@@ -7,7 +7,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A test job to cowsay
     steps:
     - name: Test just output the message
       uses: Code-Hex/cowsay-action@master
