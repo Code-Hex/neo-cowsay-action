@@ -12,7 +12,9 @@ jobs:
     - name: Test just output the message
       uses: Code-Hex/cowsay-action@test
       with:
-        message: 'Hello, World'
+        message: |
+          This is cowsay
+          Hello, World!!
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Test with another cow
