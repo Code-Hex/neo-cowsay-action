@@ -10,13 +10,13 @@ jobs:
     name: A test job to cowsay
     steps:
     - name: Test just output the message
-      uses: Code-Hex/cowsay-action@test
+      uses: Code-Hex/cowsay-action@master
       with:
         message: >
           This is cowsay
           Hello, World!!
     - name: Test cowsay on the comment
-      uses: Code-Hex/cowsay-action@test
+      uses: Code-Hex/cowsay-action@master
       with:
         message: 'Hello, World with docker'
         cow: 'docker'
@@ -25,7 +25,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Test set output pipeline
       id: cowsay_output_id
-      uses: Code-Hex/cowsay-action@test
+      uses: Code-Hex/cowsay-action@master
       with:
         message: 'Hello, World'
         cow: 'gopher'
