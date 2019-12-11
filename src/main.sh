@@ -49,6 +49,8 @@ ${result}
 \`\`\`
 EOS
     commentsURL=$(cat ${GITHUB_EVENT_PATH} | jq -r .pull_request.comments_url)
+    echo "${comment}"
+    echo "${commentsURL}"
     echo "${comment}" | curl -s -S -H "Authorization: token ${GITHUB_TOKEN}" --header "Content-Type: application/json" --data @- "${commentsURL}" > /dev/null
   else
     cowsay -f $cow $message
