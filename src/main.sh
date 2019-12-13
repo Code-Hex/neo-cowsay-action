@@ -42,7 +42,7 @@ function main {
   parseInputs
   installNeoCowsay
 
-  result=$(cowsay -f $cow $message)
+  result=$(cowsay -n -f $cow $message)
 
   # Set cowsay to output
   if [ "${outputName}" != "" ]; then
