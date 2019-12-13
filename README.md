@@ -51,6 +51,7 @@ jobs:
         echo "${{ steps.cowsay_output_id.outputs.cowsay }}"
 ```
 
+See [Example usage](https://github.com/Code-Hex/Neo-cowsay/pull/10)
 ## Inputs
 
 - `message` - (Required) the message. what does the cowsay.
