@@ -44,7 +44,7 @@ function main {
   installNeoCowsay
 
   echo "${message}" 
-  result=$(echo "${message}" | cowsay -n -f $cow)
+  result=$(echo -n "${message}" | cowsay -n -f $cow)
 
   # Set cowsay to output
   if [ "${outputName}" != "" ]; then
