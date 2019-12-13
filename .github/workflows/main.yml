@@ -9,14 +9,18 @@ jobs:
     runs-on: ubuntu-latest
     name: A test job to cowsay
     steps:
-    - name: Test just output the message
+    - name: Checkout
       uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+    - name: Test just output the message
+      uses: .
       with:
         message: >
           This is cowsay
           Hello, World!!
     - name: Test cowsay on the comment
-      uses: actions/checkout@v1
+      uses: .
       with:
         message: 'Hello, World with docker'
         cow: 'docker'
@@ -25,7 +29,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Test set output pipeline
       id: cowsay_output_id
-      uses: actions/checkout@v1
+      uses: .
       with:
         message: 'Hello, World'
         cow: 'gopher'
