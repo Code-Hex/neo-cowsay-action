@@ -58,14 +58,16 @@ function main {
   fi
 
   # Comment on the pull request if necessary.
-  if [ "$GITHUB_EVENT_NAME" == "pull_request" ] && [ "${onComment}" == "1" ]; then    
-    commentsURL=$(cat ${GITHUB_EVENT_PATH} | jq -r .pull_request.comments_url)
-    commentFromCowsay="\`\`\`
+  if [ "$GITHUB_EVENT_NAME" == "pull_request" ] || [ "$GITHUB_EVENT_NAME" == "pull_request_review" ]; then
+    if [ "${onComment}" == "1" ]; then
+      commentsURL=$(cat ${GITHUB_EVENT_PATH} | jq -r .pull_request.comments_url)
+      commentFromCowsay="\`\`\`
 ${result}
 \`\`\`
 "
-    payload=$(echo "${commentFromCowsay}" | jq -R --slurp '{body: .}')
-    echo "${payload}" | curl -s -S -H "Authorization: token ${GITHUB_TOKEN}" --header "Content-Type: application/json" --data @- "${commentsURL}" > /dev/null
+      payload=$(echo "${commentFromCowsay}" | jq -R --slurp '{body: .}')
+      echo "${payload}" | curl -s -S -H "Authorization: token ${GITHUB_TOKEN}" --header "Content-Type: application/json" --data @- "${commentsURL}" > /dev/null
+    fi
   fi
 
   # If Didn't set optional values
