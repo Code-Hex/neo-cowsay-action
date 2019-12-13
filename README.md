@@ -1,7 +1,3 @@
-# cowsay-action
-
-[![Actions Status](https://github.com/Code-Hex/cowsay-action/workflows/.github/workflows/main.yml/badge.svg)](https://github.com/Code-Hex/cowsay-action)
-
 ```
  _________________
 < github action!! >
@@ -12,6 +8,10 @@
                 ||----w |
                 ||     ||
 ```
+
+
+[![Actions Status](https://github.com/Code-Hex/cowsay-action/workflows/.github/workflows/main.yml/badge.svg)](https://github.com/Code-Hex/cowsay-action)
+
 
 ## Synopsis
 
