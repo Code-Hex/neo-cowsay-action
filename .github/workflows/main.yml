@@ -14,13 +14,13 @@ jobs:
       with:
         fetch-depth: 1
     - name: Test just output the message
-      uses: .
+      uses: ./
       with:
         message: >
           This is cowsay
           Hello, World!!
     - name: Test cowsay on the comment
-      uses: .
+      uses: ./
       with:
         message: 'Hello, World with docker'
         cow: 'docker'
@@ -29,7 +29,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Test set output pipeline
       id: cowsay_output_id
-      uses: .
+      uses: ./
       with:
         message: 'Hello, World'
         cow: 'gopher'
