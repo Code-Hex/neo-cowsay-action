@@ -43,7 +43,6 @@ function main {
   parseInputs
   installNeoCowsay
 
-  echo "${message}" 
   result=$(echo -n "${message}" | cowsay -n -f $cow)
 
   # Set cowsay to output
