@@ -10,7 +10,7 @@
 ```
 
 
-[![Actions Status](https://github.com/Code-Hex/cowsay-action/workflows/.github/workflows/main.yml/badge.svg)](https://github.com/Code-Hex/cowsay-action)
+[![Actions Status](https://github.com/Code-Hex/neo-cowsay-action/workflows/.github/workflows/main.yml/badge.svg)](https://github.com/Code-Hex/neo-cowsay-action)
 
 
 ## Synopsis
@@ -24,13 +24,13 @@ jobs:
     name: A test job to cowsay
     steps:
     - name: output the message on actions result
-      uses: Code-Hex/cowsay-action@v1
+      uses: Code-Hex/neo-cowsay-action@v1
       with:
         message: | # Support multi-lines
           This is cowsay
           Hello, World!!
     - name: cowsay on the comment
-      uses: Code-Hex/cowsay-action@v1
+      uses: Code-Hex/neo-cowsay-action@v1
       with:
         message: 'Hello, World with random'
         cow: 'random' # If specified, it shows random ascii art.
@@ -39,7 +39,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: output pipeline
       id: cowsay_output_id # You want id
-      uses: Code-Hex/cowsay-action@v1
+      uses: Code-Hex/neo-cowsay-action@v1
       with:
         message: 'Hello, World'
         cow: 'gopher' # ascii art list: https://github.com/Code-Hex/Neo-cowsay/tree/master/cows
