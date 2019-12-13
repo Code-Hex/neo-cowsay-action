@@ -1,5 +1,8 @@
-name: 'cowsay'
-description: 'Wraps some messages by cowsay'
+name: 'neo-cowsay'
+description: 'Wraps some messages by neo-cowsay'
+branding:
+  icon: 'bell'
+  color: 'gray-dark'
 inputs:
   message:
     description: 'What you want to say'
