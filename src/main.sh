@@ -43,7 +43,11 @@ function main {
   parseInputs
   installNeoCowsay
 
-  result=$(echo -n "${message}" | cowsay -n -f $cow)
+  if [ "${cow}" == "random" ]; then
+    result=$(echo -n "${message}" | cowsay -n --random)
+  else
+    result=$(echo -n "${message}" | cowsay -n -f $cow)
+  fi
 
   # Set cowsay to output
   if [ "${outputName}" != "" ]; then
