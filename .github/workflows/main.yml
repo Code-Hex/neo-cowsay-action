@@ -16,7 +16,7 @@ jobs:
     - name: Test just output the message
       uses: ./
       with:
-        message: >
+        message: |
           This is cowsay
           Hello, World!!
     - name: Test cowsay on the comment
