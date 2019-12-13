@@ -56,8 +56,7 @@ function main {
   # Comment on the pull request if necessary.
   if [ "$GITHUB_EVENT_NAME" == "pull_request" ] && [ "${onComment}" == "1" ]; then    
     commentsURL=$(cat ${GITHUB_EVENT_PATH} | jq -r .pull_request.comments_url)
-    commentFromCowsay="### Message from cowsay
-\`\`\`
+    commentFromCowsay="\`\`\`
 ${result}
 \`\`\`
 "
