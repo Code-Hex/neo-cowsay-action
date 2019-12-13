@@ -22,8 +22,8 @@ jobs:
     - name: Test cowsay on the comment
       uses: ./
       with:
-        message: 'Hello, World with docker'
-        cow: 'docker'
+        message: 'Hello, World with random'
+        cow: 'random'
         cowsay_on_comment: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
