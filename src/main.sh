@@ -19,9 +19,9 @@ function parseInputs {
 }
 
 function installNeoCowsay {
-  version="v0.1.1"
+  version="1.0.2"
   file="cowsay_${version}_Linux_x86_64.tar.gz"
-  url="https://github.com/Code-Hex/Neo-cowsay/releases/download/${version}/${file}"
+  url="https://github.com/Code-Hex/Neo-cowsay/releases/download/v${version}/${file}"
   echo "Downloading Neo-cowsay"
   curl -s -S -L -o /tmp/${file} ${url}
   if [ "${?}" -ne 0 ]; then
