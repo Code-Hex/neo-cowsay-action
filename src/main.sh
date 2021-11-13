@@ -19,7 +19,7 @@ function parseInputs {
 }
 
 function installNeoCowsay {
-  version="1.0.2"
+  version="2.0.1"
   file="cowsay_${version}_Linux_x86_64.tar.gz"
   url="https://github.com/Code-Hex/Neo-cowsay/releases/download/v${version}/${file}"
   echo "Downloading Neo-cowsay"
